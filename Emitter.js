@@ -37,14 +37,8 @@ class Emitter {
 		return this;
 	}
 
-	removeListener(name, func) {
-		const listeners = [];
-		for (const listener of this.events[name]) {
-			if (func !== listener) {
-				listeners.push(listener);
-			}
-		}
-
+	removeListener(name, listener) {
+		const listeners = this.events[name].filter(l => listener !== l);
 		this.events[name] = listeners;
 
 		return this;
